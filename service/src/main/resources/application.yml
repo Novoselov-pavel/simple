@@ -1,0 +1,13 @@
+server:
+  port: ${SERVICE_PORT:7021}
+  servlet:
+    context-path: /${SERVICE_NAME:demo}
+spring:
+  application:
+    name: ${SERVICE_NAME:demo}
+  config:
+    use-legacy-processing: true
+  profiles:
+    include: shared
+  liquibase:
+    change-log: classpath:/db/changelog/rootChangeLog.xml
