@@ -11,3 +11,4 @@ spring:
     include: db
   liquibase:
     change-log: classpath:/db/changelog/rootChangeLog.xml
+

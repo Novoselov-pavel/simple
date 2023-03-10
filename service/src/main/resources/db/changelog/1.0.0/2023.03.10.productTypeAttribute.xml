@@ -14,7 +14,7 @@
     <changeSet id="create product Type Attribute" author="novosselov.pavel@gmail.com">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="product_attribute"/>
+                <tableExists tableName="product_type_attribute"/>
             </not>
         </preConditions>
 

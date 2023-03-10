@@ -18,23 +18,18 @@ import java.util.UUID;
  * @author Новоселов Павел
  */
 @Entity
-@Table(name = "product")
+@Table(name = "product_type")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ProductEntity implements Serializable {
+public class ProductTypeEntity implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @Column(name = "productid")
-  @JsonProperty("productId")
-  @EqualsAndHashCode.Exclude
-  private UUID productId;
-
   @Column(name = "producttypeid")
   @JsonProperty("productTypeId")
-  private UUID productTypeId;
-
+  @EqualsAndHashCode.Exclude
+  private UUID producttypeid;
 
   @Column(name = "name")
   @JsonProperty("name")

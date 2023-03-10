@@ -1,6 +1,5 @@
 package ru.npn.spring.service.demo.model;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,34 +11,33 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
  * @author Новоселов Павел
  */
 @Entity
-@Table(name = "product")
+@Table(name = "number_attribute_value")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ProductEntity implements Serializable {
+public class NumberAttributeValue implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
+  @Column(name = "attributeid")
+  @JsonProperty("attributeId")
+  @EqualsAndHashCode.Exclude
+  private UUID attributeId;
+
   @Column(name = "productid")
   @JsonProperty("productId")
-  @EqualsAndHashCode.Exclude
   private UUID productId;
 
-  @Column(name = "producttypeid")
-  @JsonProperty("productTypeId")
-  private UUID productTypeId;
 
-
-  @Column(name = "name")
-  @JsonProperty("name")
-  private String name;
-
-
+  @Column(name = "att_value")
+  @JsonProperty("attributeValue")
+  private BigDecimal attributeValue;
 
 }
