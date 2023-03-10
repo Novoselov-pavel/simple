@@ -6,11 +6,12 @@ spring:
     password: ${DB_PASSWORD:dbsimple}
     hikari:
       connection-test-query: ${DB_TEST_QUERY:}
-        maximumPoolSize: ${HIKARI_MAXIMUM_POOLSIZE:2}
-        minimumIdle: ${HIKARI_MINIMUM_IDLE:1}
-        idleTimeout: ${HIKARI_IDLE_TIMEOUT:600000}
-        connectionTimeout: ${HIKARI_CONNECTION_TIMEOUT:30000}
-        maxLifetime: ${HIKARI_MAX_LIFETIME:1800000}
+      maximumPoolSize: ${HIKARI_MAXIMUM_POOLSIZE:2}
+      minimumIdle: ${HIKARI_MINIMUM_IDLE:1}
+      idleTimeout: ${HIKARI_IDLE_TIMEOUT:600000}
+      connectionTimeout: ${HIKARI_CONNECTION_TIMEOUT:30000}
+      maxLifetime: ${HIKARI_MAX_LIFETIME:1800000}
+      schema: ${DB_SCHEMA:dbsimple}
   jpa:
     database-platform: ${JPA_DIALECT:org.hibernate.dialect.PostgreSQL95Dialect}
     generate-ddl: false
@@ -23,7 +24,7 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifiers: ${DB_QUOTED_IDENTIFIERS:false}
-          jdbc:
-            time_zone: UTC
-            lob:
-              non_contextual_creation: true
+        jdbc:
+          time_zone: UTC
+          lob:
+            non_contextual_creation: true

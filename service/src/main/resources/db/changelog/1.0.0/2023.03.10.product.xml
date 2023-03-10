@@ -8,7 +8,7 @@
     <property name="uuid_type" value="uuid" dbms="postgresql"/>
     <property name="uuid_type" value="uniqueidentifier" dbms="mssql"/>
     <property name="uuid_type" value="RAW(16)" dbms="oracle"/>
-    <property name="uuid_type" value="uuid-char" dbms="h2"/>
+    <property name="uuid_type" value="uuid" dbms="h2"/>
 
 
     <changeSet id="create product" author="novosselov.pavel@gmail.com">
