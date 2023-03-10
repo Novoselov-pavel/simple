@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
+    <property name="uuid_type" value="uniqueidentifier" dbms="mssql"/>
+    <property name="uuid_type" value="RAW(16)" dbms="oracle"/>
+    <property name="uuid_type" value="uuid-char" dbms="h2"/>
+
+
+    <changeSet id="create product Type Attribute" author="novosselov.pavel@gmail.com">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="product_attribute"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="product_type_attribute" remarks="Атрибуты типа продукта">
+            <column name="producttypeattributeid" type="${uuid_type}">
+                <constraints primaryKey="true" unique="true" nullable="false" primaryKeyName="pk_product_type_attribute_producttypeattributeid"/>
+            </column>
+            <column name="name" type="VARCHAR(255)" remarks="Наименование атрибута">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="type" type="INTEGER" remarks="Тип атрибута 0  - число, 1 - строка, 2 - дата">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+		
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
+    <property name="uuid_type" value="uniqueidentifier" dbms="mssql"/>
+    <property name="uuid_type" value="RAW(16)" dbms="oracle"/>
+    <property name="uuid_type" value="uuid-char" dbms="h2"/>
+
+
+    <changeSet id="create number attribute value" author="novosselov.pavel@gmail.com">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="number_attribute_value"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="number_attribute_value" remarks="Атрибуты строкового типа">
+            <column name="attributeid" type="${uuid_type}">
+                <constraints nullable="false" primaryKeyName="pk_number_attribute_value_attributeid"/>
+            </column>
+            <column name="productid" type="${uuid_type}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="att_value" type="number">
+            </column>
+        </createTable>
+
+        <createIndex tableName="number_attribute_value" indexName="number_attribute_value_productid_idx">
+            <column name="productid"></column>
+        </createIndex>
+
+
+    </changeSet>
+		
+</databaseChangeLog>

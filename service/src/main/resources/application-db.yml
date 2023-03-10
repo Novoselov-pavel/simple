@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name:  ${DB_DRIVER:org.postgresql.Driver}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/dbsimple?currentSchema=dbsimple}
+    username: ${DB_USERNAME:dbsimple}
+    password: ${DB_PASSWORD:dbsimple}
+    hikari:
+      connection-test-query: ${DB_TEST_QUERY:}
+        maximumPoolSize: ${HIKARI_MAXIMUM_POOLSIZE:2}
+        minimumIdle: ${HIKARI_MINIMUM_IDLE:1}
+        idleTimeout: ${HIKARI_IDLE_TIMEOUT:600000}
+        connectionTimeout: ${HIKARI_CONNECTION_TIMEOUT:30000}
+        maxLifetime: ${HIKARI_MAX_LIFETIME:1800000}
+  jpa:
+    database-platform: ${JPA_DIALECT:org.hibernate.dialect.PostgreSQL95Dialect}
+    generate-ddl: false
+    show-sql: ${SHOW_SQL:true}
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy:  ${JPA_STRATEGY:org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl}
+    properties:
+      hibernate:
+        globally_quoted_identifiers: ${DB_QUOTED_IDENTIFIERS:false}
+          jdbc:
+            time_zone: UTC
+            lob:
+              non_contextual_creation: true

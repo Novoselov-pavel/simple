@@ -8,6 +8,18 @@ spring:
   config:
     use-legacy-processing: true
   profiles:
-    include: shared
+    include: >
+    db
   liquibase:
     change-log: classpath:/db/changelog/rootChangeLog.xml
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+        naming:
+          physical-strategy: ru.diasoft.micro.lib.config.H2PhysicalNamingStrategy
+
