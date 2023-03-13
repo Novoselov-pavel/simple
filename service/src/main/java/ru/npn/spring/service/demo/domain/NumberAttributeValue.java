@@ -1,4 +1,4 @@
-package ru.npn.spring.service.demo.model;
+package ru.npn.spring.service.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;

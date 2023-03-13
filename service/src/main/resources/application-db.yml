@@ -13,7 +13,7 @@ spring:
       maxLifetime: ${HIKARI_MAX_LIFETIME:1800000}
       schema: ${DB_SCHEMA:dbsimple}
   jpa:
-    database-platform: ${JPA_DIALECT:org.hibernate.dialect.PostgreSQL95Dialect}
+    database-platform: ${JPA_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
     generate-ddl: false
     show-sql: ${SHOW_SQL:true}
     open-in-view: false

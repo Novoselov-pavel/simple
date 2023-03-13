@@ -11,4 +11,7 @@ spring:
     include: db
   liquibase:
     change-log: classpath:/db/changelog/rootChangeLog.xml
-
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  show-actuator: true
