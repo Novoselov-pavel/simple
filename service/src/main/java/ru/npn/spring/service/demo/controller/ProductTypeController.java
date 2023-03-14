@@ -35,11 +35,9 @@ public class ProductTypeController {
   }
 
   @GetMapping("")
-  @Operation(summary = "Описк типов продукта")
+  @Operation(summary = "Поиск типов продукта")
   Page<ProductTypeDto> findProductByParam(@QuerydslPredicate(root = ProductTypeDto.class) Predicate predicate, Pageable pageable){
-
     return productTypeMainService.findProductByParam(predicate, pageable);
-
   }
 
 

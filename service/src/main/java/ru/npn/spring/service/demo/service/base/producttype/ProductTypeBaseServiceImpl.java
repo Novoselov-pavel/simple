@@ -1,6 +1,9 @@
 package ru.npn.spring.service.demo.service.base.producttype;
 
+import com.querydsl.core.types.Predicate;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.npn.spring.service.demo.domain.ProductTypeEntity;
 import ru.npn.spring.service.demo.repository.ProductTypeRepository;
@@ -23,6 +26,11 @@ public class ProductTypeBaseServiceImpl implements ProductTypeBaseService {
   @Override
   public ProductTypeEntity save(ProductTypeEntity value) {
     return productTypeRepository.save(value);
+  }
+
+  @Override
+  public Page<ProductTypeEntity> findByParam(Predicate predicate, Pageable pageable) {
+    return productTypeRepository.findAll(predicate, pageable);
   }
 
   @Override

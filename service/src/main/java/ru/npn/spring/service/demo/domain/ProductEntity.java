@@ -33,7 +33,6 @@ public class ProductEntity implements Serializable {
   @JoinColumn(name = "producttypeid")
   private ProductTypeEntity productType;
 
-
   @Column(name = "name")
   @JsonProperty("name")
   private String name;
