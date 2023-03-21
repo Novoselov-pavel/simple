@@ -14,6 +14,8 @@ public interface ProductTypeBaseService {
 
   ProductTypeEntity findById(UUID id);
 
+  ProductTypeEntity findByIdWithAttributes(UUID id);
+
   ProductTypeEntity save(ProductTypeEntity value);
 
   Page<ProductTypeEntity> findByParam(Predicate predicate,  Pageable pageable);

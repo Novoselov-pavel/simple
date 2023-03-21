@@ -11,8 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.*;
+import ru.npn.spring.service.demo.controller.dto.AttributeLinkDto;
 import ru.npn.spring.service.demo.controller.dto.ProductTypeCreateDto;
 import ru.npn.spring.service.demo.controller.dto.ProductTypeDto;
+import ru.npn.spring.service.demo.controller.dto.ProductTypeWithAttributeDto;
 import ru.npn.spring.service.demo.domain.ProductTypeEntity;
 import ru.npn.spring.service.demo.service.producttype.ProductTypeMainService;
 
@@ -26,13 +28,13 @@ import java.util.UUID;
 @Tag(name = "ProductType", description = "Тип продукта")
 @RequestMapping("/ProductType")
 public class ProductTypeController {
-  private final ProductTypeMainService productTypeMainService;
+  private final ProductTypeMainService service;
 
   @GetMapping("/{id}")
   @Operation(summary = "Получение типа продукта по id")
   ProductTypeDto getProductTypeById(@Parameter(name = "id",description = "Идентификатор типа продукта", required = true)
                                     @PathVariable UUID id) {
-    return productTypeMainService.getProductTypeById(id);
+    return service.getProductTypeById(id);
   }
 
   @GetMapping("")
@@ -40,21 +42,26 @@ public class ProductTypeController {
   @Parameters(value = {
       @Parameter(name = "productTypeId", description = "Идентификатор", example = "3fa85f64-5717-4562-b3fc-2c963f66afa6",schema = @Schema(type = "string", format = "uuid")),
       @Parameter(name = "name", description = "Наименование", example = "name",schema = @Schema(type = "string")),
-      @Parameter(name = "page", description = "Наименование", example = "0",schema = @Schema(type = "integer")),
-      @Parameter(name = "size", description = "Наименование", example = "100",schema = @Schema(type = "integer")),
-      @Parameter(name = "sort", description = "Наименование", schema = @Schema(type = "string")),
+      @Parameter(name = "page", description = "Страница", example = "0",schema = @Schema(type = "integer")),
+      @Parameter(name = "size", description = "Количество строк", example = "100",schema = @Schema(type = "integer")),
+      @Parameter(name = "sort", description = "Сортировка", schema = @Schema(type = "string")),
   })
   Page<ProductTypeDto> findProductByParam(@Parameter(hidden = true) @QuerydslPredicate(root = ProductTypeEntity.class) Predicate predicate, @Parameter(hidden = true) Pageable pageable){
-    return productTypeMainService.findProductByParam(predicate, pageable);
+    return service.findProductByParam(predicate, pageable);
   }
 
 
   @PostMapping("")
   @Operation(summary = "Создание типа продукта")
   ProductTypeDto createProductType(@RequestBody(required = true) ProductTypeCreateDto createDto){
-    return null;
+    return service.create(createDto);
   }
 
+  @PostMapping("/addAttribute")
+  @Operation(summary = "Добавление атрибута для типа продукта")
+  ProductTypeWithAttributeDto addLink(@RequestBody(required = true) AttributeLinkDto attributeLinkDto){
+    return service.addLink(attributeLinkDto);
+  }
 
 
 }

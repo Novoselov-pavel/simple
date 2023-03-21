@@ -24,6 +24,11 @@ public class ProductTypeBaseServiceImpl implements ProductTypeBaseService {
   }
 
   @Override
+  public ProductTypeEntity findByIdWithAttributes(UUID id) {
+    return productTypeRepository.findFirstByProductTypeId(id);
+  }
+
+  @Override
   public ProductTypeEntity save(ProductTypeEntity value) {
     return productTypeRepository.save(value);
   }

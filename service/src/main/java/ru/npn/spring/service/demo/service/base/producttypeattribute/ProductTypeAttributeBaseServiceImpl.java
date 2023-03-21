@@ -1,6 +1,9 @@
 package ru.npn.spring.service.demo.service.base.producttypeattribute;
 
+import com.querydsl.core.types.Predicate;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.npn.spring.service.demo.domain.ProductTypeAttributeEntity;
 import ru.npn.spring.service.demo.repository.ProductTypeAttributeRepository;
@@ -28,5 +31,10 @@ public class ProductTypeAttributeBaseServiceImpl implements ProductTypeAttribute
   @Override
   public void delete(ProductTypeAttributeEntity value) {
     productTypeAttributeRepository.delete(value);
+  }
+
+  @Override
+  public Page<ProductTypeAttributeEntity> findByParam(Predicate predicate, Pageable pageable) {
+    return productTypeAttributeRepository.findAll(predicate, pageable);
   }
 }

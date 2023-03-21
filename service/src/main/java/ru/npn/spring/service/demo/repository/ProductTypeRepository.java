@@ -18,9 +18,11 @@ import java.util.UUID;
 public interface ProductTypeRepository extends JpaRepository<ProductTypeEntity, UUID>,
     QuerydslPredicateExecutor<ProductTypeEntity>, DefaultQuerydslBinderCustomizer<QProductTypeEntity> {
 
+  @EntityGraph(value = "productTypeWithAttr")
   ProductTypeEntity findFirstByProductTypeId(UUID productTypeId);
 
   @EntityGraph(value = "productTypeWithAttr")
   List<ProductTypeEntity> findAllByNameStartingWith(String nameStart);
+
 
 }
